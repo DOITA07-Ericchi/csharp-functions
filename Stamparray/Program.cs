@@ -3,14 +3,29 @@ StampaArrayInteri(arrayInteri);
 Console.Write("Vuoi cambiare questo array di numeri? (s/N)");
 bool cambiare = convalida();
 if (cambiare == true) {
+	bool utonto = false;
 	Console.Write("Quanti elementi ha il tuo array? ");
 	if (Int32.TryParse(Console.ReadLine(), out int j)) {
 		int quanti = j;
-		arrayInteri = new int[quanti];
+		int[] copiainteri = (int[])arrayInteri.Clone();
+		copiainteri = new int[quanti];
 		for (int i = 0; i < quanti; i++) {
-			Console.Write("Inserisci il " + i + "º numero: ");
-			arrayInteri[i] =
+			Console.Write("Inserisci il " + (i + 1) + "º numero: ");
+			// Di sicuro c'è un modo migliore di farlo. Se l'utente inserisce una lettera è un disastro.
+			
+			try {
+				copiainteri[i] = Int32.Parse(Console.ReadLine());
+			} catch {
+				Console.WriteLine("Haha. Molto divertente. Verrà usato l'array di default.");
+				utonto = true;
+				break;
+			}
 		}
+		if (utonto == false) {
+			arrayInteri = (int[])copiainteri.Clone();
+		}
+		Console.Write("Nuovo array: ");
+		StampaArrayInteri(arrayInteri);
 	} else {
 		Console.WriteLine("Non hai inserito un numero valido. Verrà usato l'array di default.");
 	}
