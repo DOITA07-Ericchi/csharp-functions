@@ -9,10 +9,9 @@ if (cambiare == true) {
 		int quanti = j;
 		int[] copiainteri = (int[])arrayInteri.Clone();
 		copiainteri = new int[quanti];
+		// Check anti-utonti
 		for (int i = 0; i < quanti; i++) {
 			Console.Write("Inserisci il " + (i + 1) + "º numero: ");
-			// Di sicuro c'è un modo migliore di farlo. Se l'utente inserisce una lettera è un disastro.
-			
 			try {
 				copiainteri[i] = Int32.Parse(Console.ReadLine());
 			} catch {
